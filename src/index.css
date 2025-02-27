@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@layer utilities {
+  .bg-custom-image {
+    background-image: url("../src/assets/bgImg.png");
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+}
+
 :root {
   font-family: "Inter", sans-serif;
 }
