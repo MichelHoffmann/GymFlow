@@ -10,6 +10,11 @@
 
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
+  --color-gray-01: #191919;
+  --color-gray-02: #282828;
+  --color-gray-03: #3F3F3F;
+  --color-gray-04: #7C7C8A;
+  --color-purple: #896CFE;
 }
 
 :root {
