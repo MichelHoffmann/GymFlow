@@ -67,16 +67,18 @@ export default function FormCadastroLogin({ type }) {
     );
   }
 
-  if (type === 'login') {
-    return(
-<div className="bg-black w-full h-screen">
+  if (type === "login") {
+    return (
+      <div className="bg-black w-full h-screen">
         <div className="bg-custom-image w-full h-screen">
           <header className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
             <div className="flex items-center gap-2 mb-5">
               <img src={gymIcon} alt="Icone de um halter" />
               <h1 className="font-bold text-3xl">GymFlow</h1>
             </div>
-            <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
+            <h2 className="font-light text-xl opacity-60">
+              Acesse a sua conta
+            </h2>
             <form
               className="w-full flex flex-col items-center justify-center gap-3"
               action=""
@@ -116,9 +118,9 @@ export default function FormCadastroLogin({ type }) {
           </header>
         </div>
       </div>
-    )
-    }
-/*
+    );
+  }
+  /*
   if (type === 'recuperar') {
     return()
   }
