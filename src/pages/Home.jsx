@@ -23,7 +23,9 @@ export default function Home() {
         </div>
       </header>
       <main className="w-full h-[calc(100vh-120px)] flex px-6 flex-col items-center bg-gray-01">
-        <div className="w-full flex justify-center items-center gap-7 my-5">
+        <div
+          className={`w-full flex justify-center items-center gap-7 my-5`}
+        >
           <Barbell
             size={60}
             color={page === "trainnig" ? "#7C7C8A" : "#FFFD54"}
@@ -36,7 +38,9 @@ export default function Home() {
             weight="regular"
           />
         </div>
-        {page === "trainnig" ? <Training /> : null}
+        {page === "trainnig" ? (
+          <Training />
+        ) : null}
       </main>
     </>
   );
