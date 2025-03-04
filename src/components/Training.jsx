@@ -1,8 +1,11 @@
 import ExerciseComponent from "./Exercise";
 import exImg from "../assets/exImg.png";
 import { useState } from "react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
-export default function Training() {
+export default function Training({ editTrainningHome }) {
+  const [classEdit, setClassEdit] = useState("");
+  const [searchExerciseClass, setSearchExerciseClass] = useState("");
   const [exercises, setExercises] = useState([
     {
       name: "Puxada frontal",
@@ -12,7 +15,7 @@ export default function Training() {
     {
       name: "Remada curvada",
       series: "3 series x 12 repetições",
-      done: true,
+      done: false,
     },
     {
       name: "Remada unilateral",
@@ -39,15 +42,86 @@ export default function Training() {
   }
 
   function editTrainning() {
-    return(
-      <div>
-        <h1>Editando...</h1>
+    if (classEdit === "") {
+      setClassEdit("hidden");
+    } else {
+      setClassEdit("");
+    }
+    editTrainningHome();
+  }
+
+  function deleteExercise(name) {
+    setExercises((prevExercises) =>
+      prevExercises.filter((exercise) => exercise.name !== name)
+    );
+  }
+
+  function searchExercises() {
+    if (searchExerciseClass === "") {
+      setSearchExerciseClass("hidden");
+    } else {
+      setSearchExerciseClass("");
+    }
+  }
+
+  if (searchExerciseClass === "hidden") {
+    return (
+      <div className="flex flex-col w-full h-full">
+        <div
+          id="input"
+          className="flex justify-center items-center bg-gray-03 rounded-lg px-5 py-3 mt-5"
+        >
+          <input
+            type="search"
+            name=""
+            id=""
+            placeholder="Pesquisar exercício"
+            className="placeholder-purple text-white font-bold rounded-lg px-5 py-3"
+          />
+          <MagnifyingGlass size={24} color="#8C78DB" weight="bold" />
+        </div>
       </div>
-    )
+    );
+  }
+
+  if (classEdit === "hidden") {
+    return (
+      <div className={`flex flex-col items-end gap-20 ${searchExerciseClass}`}>
+        <div className="min-w-full flex overflow-auto flex-col gap-3">
+          {exercises.map((exercise) => {
+            return (
+              <ExerciseComponent
+                key={exercise.name}
+                exerciseImg={exImg}
+                exercise={exercise}
+                type="edit"
+                deleteExercise={deleteExercise}
+              />
+            );
+          })}
+          <button
+            className="border-2 border-purple text-purple font-bold rounded-lg px-5 py-3"
+            onClick={() => {
+              searchExercises();
+            }}
+          >
+            Adicionar exercicio
+          </button>
+        </div>
+        <div>
+          <button
+            className="w-[110px] h-10 bg-purple text-white text-2xl font-bold rounded-lg mt-4"
+            onClick={editTrainning}
+          >
+            Salvar
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className={`w-full flex flex-col`}>
+    <div className={`w-full flex flex-col ${classEdit}`}>
       <div className="w-full flex justify-center items-center gap-7">
         <p
           className={`font-bold ${
@@ -90,12 +164,14 @@ export default function Training() {
           );
         })}
       </div>
-      <button
-        className="w-[110px] h-10 bg-purple text-white text-2xl font-bold rounded-lg mt-4"
-        onClick={editTrainning}
-      >
-        Editar
-      </button>
+      <div className="flex justify-end">
+        <button
+          className="w-[110px] h-10 bg-purple text-white text-2xl font-bold rounded-lg mt-4"
+          onClick={editTrainning}
+        >
+          Editar
+        </button>
+      </div>
     </div>
   );
 }

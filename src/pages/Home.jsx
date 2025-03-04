@@ -3,9 +3,19 @@ import userIcon from "../assets/userIcon.svg";
 import exitIcon from "../assets/exitIcon.svg";
 import Training from "../components/Training.jsx";
 import { Barbell, ForkKnife } from "@phosphor-icons/react";
+import { useState } from "react";
 
 export default function Home() {
+  const [editClass, setEditClass] = useState('')
   let page = "trainnig";
+
+  function editTrainningHome() {
+    if (editClass === "") {
+      setEditClass("hidden");
+    } else {
+      setEditClass("");
+    }
+  }
   return (
     <>
       <header className="w-full h-[120px] bg-gray-02 flex justify-between items-center px-7">
@@ -22,9 +32,11 @@ export default function Home() {
           <img src={exitIcon} alt="Icone para sair da conta" />
         </div>
       </header>
-      <main className="w-full h-[calc(100vh-120px)] flex px-6 flex-col items-center bg-gray-01">
+      <main
+        className={`w-full h-[calc(100vh-120px)] flex px-6 flex-col items-center ${editClass !== '' ? 'justify-center' : ''} bg-gray-01`}
+      >
         <div
-          className={`w-full flex justify-center items-center gap-7 my-5`}
+          className={`${editClass} w-full flex justify-center items-center gap-7 my-5`}
         >
           <Barbell
             size={60}
@@ -39,7 +51,7 @@ export default function Home() {
           />
         </div>
         {page === "trainnig" ? (
-          <Training />
+          <Training editTrainningHome={editTrainningHome} />
         ) : null}
       </main>
     </>
