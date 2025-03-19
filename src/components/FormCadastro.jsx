@@ -2,7 +2,7 @@ import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
 import facebookIcon from "../assets/Facebook.png";
 
-export default function FormCadastroLogin({ type }) {
+export default function FormCadastro({ type }) {
   if (type === "cadastro") {
     return (
       <div className="bg-black w-full h-screen">

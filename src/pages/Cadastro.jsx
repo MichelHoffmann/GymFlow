@@ -1,9 +1,9 @@
-import { FormCadastroLogin } from "../components/FormCadastroLogin";
+import FormCadastro from "../components/FormCadastro.jsx";
 
 export default function Cadastro() {
   return (
     <>
-      <FormCadastroLogin props="login" />
+      <FormCadastro type="cadastro" />
     </>
   );
 }
