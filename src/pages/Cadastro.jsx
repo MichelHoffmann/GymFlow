@@ -1,9 +1,9 @@
-import FormCadastro from "../components/FormCadastro.jsx";
+import Form from "../components/Form.jsx";
 
 export default function Cadastro() {
   return (
     <>
-      <FormCadastro type="cadastro" />
+      <Form type="cadastro" />
     </>
   );
 }

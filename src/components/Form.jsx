@@ -1,8 +1,27 @@
 import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
 import facebookIcon from "../assets/Facebook.png";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message'
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default function FormCadastro({ type }) {
+const userSchema = z.object({
+  name: z.string().min(3, { message: "O nome precisa de pelo menos 3 caracteres" }),
+  email: z.string().email({ message: "Digite um email válido" }),
+  password: z.string().min(6, { message: "A senha precisa de pelo menos 6 caracteres" }),
+  confirmPassword: z.string()
+}).refine((data) => data.password === data.confirmPassword, { message: "As senhas precisam ser iguais", path: ['confirmPassword'] });
+
+export default function Form({ type }) {
+  const { register, handleSubmit, formState: { errors }} = useForm({
+    resolver: zodResolver(userSchema)
+  })
+
+  function handleFormSubmit(data) {
+    console.log(data)
+  }
+
   if (type === "cadastro") {
     return (
       <div className="bg-black w-full h-screen">
@@ -16,28 +35,36 @@ export default function FormCadastro({ type }) {
             <form
               className="w-full flex flex-col items-center justify-center gap-3"
               action=""
+              id="form"
+              onSubmit={handleSubmit(handleFormSubmit)}
             >
               <input
                 className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-                id="nome"
                 type="text"
                 placeholder="Nome"
+                {...register("name")}
               />
+              <ErrorMessage errors={errors} name="name" as={<p className="text-cool-red text-xs w-[302px] text-center font-bold" />} />
               <input
                 className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-                type="email"
                 placeholder="Email"
+                {...register("email")}
               />
+              <ErrorMessage errors={errors} name="email" as={<p className="text-cool-red text-xs w-[302px] text-center font-bold" />} />
               <input
                 className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
                 type="password"
                 placeholder="Senha"
+                {...register("password")}
               />
+              <ErrorMessage errors={errors} name="password" as={<p className="text-cool-red text-xs w-[302px] text-center font-bold" />} />
               <input
                 className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
                 type="password"
                 placeholder="Confirme sua senha"
+                {...register("confirmPassword")}
               />
+              <ErrorMessage errors={errors} name="confirmPassword" as={<p className="text-cool-red text-xs w-[302px] text-center font-bold" />} />
               <button
                 className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-bold"
                 type="submit"
