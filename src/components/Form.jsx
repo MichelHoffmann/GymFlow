@@ -5,6 +5,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message'
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "../services/authServices";
 
 const userSchema = z.object({
   name: z.string().min(3, { message: "O nome precisa de pelo menos 3 caracteres" }),
@@ -18,8 +19,8 @@ export default function Form({ type }) {
     resolver: zodResolver(userSchema)
   })
 
-  function handleFormSubmit(data) {
-    console.log(data)
+  function handleRegisterUser(data) {
+    return registerUser(data)
   }
 
   if (type === "cadastro") {
@@ -36,7 +37,7 @@ export default function Form({ type }) {
               className="w-full flex flex-col items-center justify-center gap-3"
               action=""
               id="form"
-              onSubmit={handleSubmit(handleFormSubmit)}
+              onSubmit={handleSubmit(handleRegisterUser)}
             >
               <input
                 className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
