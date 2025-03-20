@@ -1,13 +1,12 @@
 import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
-import facebookIcon from "../assets/Facebook.png";
+import { LockSimple, SignIn, User, WarningCircle } from "@phosphor-icons/react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginUser } from "../services/authServices";
 import { Link } from "react-router";
 import { useState } from "react";
+import { loginUser } from "../services/authServices";
 
 const userSchema = z.object({
   email: z.string().email({ message: "Digite um email válido" }),
@@ -17,18 +16,15 @@ const userSchema = z.object({
 });
 
 export default function Login() {
-  const [error, setError] = useState("Esse é um erro teste");
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const [error, setError] = useState(
+    "Esse é um erro de exemplo exemplo esse é"
+  );
+  const { register, handleSubmit } = useForm({
     resolver: zodResolver(userSchema),
   });
 
   function handleLoginResponse(response) {
     if (!response.success) {
-      console.log(`TESTE: ${response.message.message.slice("🔥")}`);
       setError(response.message.message.replace("🔥", ""));
     }
   }
@@ -47,66 +43,73 @@ export default function Login() {
             <h1 className="font-bold text-3xl">GymFlow</h1>
           </div>
           <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
-          <form
-            className="w-full flex flex-col items-center justify-center gap-3"
-            onSubmit={handleSubmit(handleLoginUser)}
-          >
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              placeholder="Email"
-              {...register("email")}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="email"
-              as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
-              }
-            />
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              type="password"
-              placeholder="Senha"
-              {...register("password")}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="password"
-              as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
-              }
-            />
-            <button
-              className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-bold"
-              type="submit"
-            >
-              Entrar
-            </button>
-          </form>
           {error && (
-            <div className="text-center">
-              <p style={{ color: "red" }}>{error}</p>
+            <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
+              <WarningCircle size={25} />
+              <p className="text-white font-medium">{error}</p>
             </div>
           )}
-
-          <p className="text-blue-400 -translate-y-4 ml-28">
-            Esqueceu a sua senha?
+          <form
+            className="w-full flex flex-col items-center justify-center gap-4"
+            onSubmit={handleSubmit(handleLoginUser)}
+          >
+            <div>
+              <label htmlFor="Email" className="font-light">
+                Email
+              </label>
+              <div className="relative">
+                <User
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  placeholder="seu@email.com"
+                  id="Email"
+                  {...register("email")}
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="Email" className="font-light">
+                Senha
+              </label>
+              <div className="relative">
+                <LockSimple
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  type="password"
+                  placeholder="Senha"
+                  {...register("password")}
+                />
+              </div>
+            </div>
+            <div>
+              <button
+                className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
+                type="submit"
+              >
+                <SignIn size={25} color={"#fff"} />
+                Entrar
+              </button>
+              <button className="w-[302px] h-[48px] bg-gray-05 border-1 outline-none rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3">
+                <img className="w-7" src={googleIcon} alt="" />
+                Google
+              </button>
+            </div>
+          </form>
+          <p className="text-blue-500">Esqueceu a sua senha?</p>
+          <p>
+            Não tem uma conta?
+            <Link to={"/cadastro"}>
+              <span className="text-blue-500"> Registre-se</span>
+            </Link>
           </p>
-          <div className="flex gap-5">
-            <img
-              className="border-purple border-2 rounded-3xl p-0.5"
-              src={googleIcon}
-              alt=""
-            />
-            <img
-              className="border-purple border-2 rounded-3xl p-0.5"
-              src={facebookIcon}
-              alt=""
-            />
-          </div>
-          <Link to={"/cadastro"}>
-            <p>Não tem uma conta?</p>
-          </Link>
         </header>
       </div>
     </div>

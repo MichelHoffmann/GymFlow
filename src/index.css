@@ -12,12 +12,20 @@
   --color-mint-500: oklch(0.72 0.11 178);
   --color-gray-01: #191919;
   --color-gray-02: #282828;
-  --color-gray-03: #3F3F3F;
-  --color-gray-04: #7C7C8A;
-  --color-purple: #896CFE;
-  --color-cool-red: #D65247
+  --color-gray-03: #3f3f3f;
+  --color-gray-04: #7c7c8a;
+  --color-purple: #896cfe;
+  --color-red-one: #d65247;
+  --color-red-two: #ff5c5c;
 }
 
 :root {
   font-family: "Inter", sans-serif;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #282828 inset !important;
+    -webkit-text-fill-color: #7c7c8a !important;
+  }
 }
