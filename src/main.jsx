@@ -1,12 +1,18 @@
+import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Login from "./pages/Login.jsx";
-//import Cadastro from './pages/Cadastro.jsx'
-
+import Cadastro from "./pages/Cadastro.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Login />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        {/* <Route index element={<Home />}/> */}
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );
