@@ -28,7 +28,6 @@ export default function Login() {
   function handleLoginResponse(response) {
     setIsLoading(false);
     if (response.success) {
-      console.log(response)
       navigate("/home");
     } else {
       setError(response.message.message.replace("🔥", ""));

@@ -20,3 +20,16 @@ export const loginUser = async (userData) => {
     return { success: false, message: error.response.data };
   }
 };
+
+export const verifyToken = async (token) => {
+  try {
+    const response = await api.get("/user/me", {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    return response.data
+  } catch (error) {
+    
+  }
+}
