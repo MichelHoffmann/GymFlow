@@ -1,12 +1,14 @@
 import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
+import loadingIcon from '../assets/loadingIcon.svg'
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "../services/authServices";
-import { Link } from "react-router";
-import { At, LockSimple, SignIn, User } from "@phosphor-icons/react";
+import { Link, useNavigate } from "react-router";
+import { At, LockSimple, SignIn, User, WarningCircle } from "@phosphor-icons/react";
+import { useState } from "react";
 
 const userSchema = z
   .object({
@@ -25,6 +27,8 @@ const userSchema = z
   });
 
 export default function Cadastro() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -32,9 +36,22 @@ export default function Cadastro() {
   } = useForm({
     resolver: zodResolver(userSchema),
   });
+  const navigate = useNavigate()
 
-  function handleRegisterUser(data) {
-    return registerUser(data);
+  async function handleRegisterResponse(response) {
+    setIsLoading(false)
+    if (response.success) {
+      navigate('/login')
+    } else {
+      setError(response.message.replace("🔥", ""))
+    }
+  }
+
+  async function handleRegisterUser(data) {
+    setIsLoading(true)
+    setError("")
+    const response = await registerUser(data);
+    handleRegisterResponse(response)
   }
 
   return (
@@ -46,6 +63,13 @@ export default function Cadastro() {
             <h1 className="font-bold text-3xl">GymFlow</h1>
           </div>
           <h2 className="font-light text-xl opacity-60">Crie a sua conta</h2>
+          {error &&
+            (
+              <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
+                <WarningCircle size={25} />
+                <p className="text-white font-medium">{error}</p>
+              </div>
+            )}
           <form
             className="w-full flex flex-col items-center justify-center gap-3"
             action=""
@@ -160,8 +184,8 @@ export default function Cadastro() {
                 className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
                 type="submit"
               >
-                <SignIn size={25} color={"#fff"} />
-                Cadastrar
+                {isLoading ? (<img src={loadingIcon} className="w-9" />) : (<SignIn size={25} color={"#fff"} />)}
+                {isLoading ? (<span>Carregando</span>) : (<span>Entrar</span>)}
               </button>
               <button className="w-[302px] h-[48px] bg-gray-05 border-1 outline-none rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3">
                 <img className="w-7" src={googleIcon} alt="" />

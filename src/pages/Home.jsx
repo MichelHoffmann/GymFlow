@@ -4,6 +4,7 @@ import exitIcon from "../assets/exitIcon.svg";
 import Training from "../components/Training.jsx";
 import { Barbell, ForkKnife } from "@phosphor-icons/react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 export default function Home() {
   const [editClass, setEditClass] = useState('')
@@ -20,11 +21,13 @@ export default function Home() {
     <>
       <header className="w-full h-[120px] bg-gray-02 flex justify-between items-center px-7">
         <div className="flex items-center justify-center gap-3">
-          <img
-            src={userImg}
-            alt="Imagem do usuario"
-            className="border-2 rounded-4xl border-gray-03"
-          />
+          <Link to={'/login'}>
+            <img
+              src={userImg}
+              alt="Imagem do usuario"
+              className="border-2 rounded-4xl border-gray-03"
+            />
+          </Link>
           <p className="font-bold text-xl text-purple">Olá, Michel</p>
         </div>
         <div className="flex items-center justify-center gap-3">
