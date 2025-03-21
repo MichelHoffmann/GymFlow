@@ -1,12 +1,12 @@
 import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
-import facebookIcon from "../assets/Facebook.png";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerUser } from "../services/authServices";
 import { Link } from "react-router";
+import { At, LockSimple, SignIn, User } from "@phosphor-icons/react";
 
 const userSchema = z
   .object({
@@ -41,7 +41,7 @@ export default function Cadastro() {
     <div className="bg-black w-full h-screen">
       <div className="bg-custom-image w-full h-screen">
         <header className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 mr-9">
             <img src={gymIcon} alt="Icone de um halter" />
             <h1 className="font-bold text-3xl">GymFlow</h1>
           </div>
@@ -52,82 +52,128 @@ export default function Cadastro() {
             id="form"
             onSubmit={handleSubmit(handleRegisterUser)}
           >
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              type="text"
-              placeholder="Nome"
-              {...register("name")}
-            />
+            <div>
+              <label htmlFor="name" className="font-light">
+                Nome
+              </label>
+              <div className="relative">
+                <User
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  type="text"
+                  placeholder="seu nome"
+                  id="name"
+                  {...register("name")}
+                />
+              </div>
+            </div>
             <ErrorMessage
               errors={errors}
               name="name"
               as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
+                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
               }
             />
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              placeholder="Email"
-              {...register("email")}
-            />
+            <div>
+              <label htmlFor="email" className="font-light">
+                Email
+              </label>
+              <div className="relative">
+                <At
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  placeholder="seu@email.com"
+                  id="email"
+                  {...register("email")}
+                />
+              </div>
+            </div>
             <ErrorMessage
               errors={errors}
               name="email"
               as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
+                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
               }
             />
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              type="password"
-              placeholder="Senha"
-              {...register("password")}
-            />
+            <div>
+              <label htmlFor="password" className="font-light">
+                Senha
+              </label>
+              <div className="relative">
+                <LockSimple
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  type="password"
+                  placeholder="Senha"
+                  id="password"
+                  {...register("password")}
+                />
+              </div>
+            </div>
             <ErrorMessage
               errors={errors}
               name="password"
               as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
+                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
               }
             />
-            <input
-              className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-5 rounded-sm outline-purple"
-              type="password"
-              placeholder="Confirme sua senha"
-              {...register("confirmPassword")}
-            />
+            <div>
+              <label htmlFor="confirmPassword" className="font-light">
+                Confirmar a senha
+              </label>
+              <div className="relative">
+                <LockSimple
+                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                  size={35}
+                  color={"#7c7c8a"}
+                />
+                <input
+                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                  type="password"
+                  placeholder="Confirme sua senha"
+                  id="confirmPassword"
+                  {...register("confirmPassword")}
+                />
+              </div>
+            </div>
             <ErrorMessage
               errors={errors}
               name="confirmPassword"
               as={
-                <p className="text-cool-red text-xs w-[302px] text-center font-bold" />
+                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
               }
             />
-            <button
-              className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-bold"
-              type="submit"
-            >
-              Cadastrar
-            </button>
+            <div>
+              <button
+                className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
+                type="submit"
+              >
+                <SignIn size={25} color={"#fff"} />
+                Cadastrar
+              </button>
+              <button className="w-[302px] h-[48px] bg-gray-05 border-1 outline-none rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3">
+                <img className="w-7" src={googleIcon} alt="" />
+                Cadastrar com Google
+              </button>
+            </div>
           </form>
           <Link to={"/login"}>
             <p className="text-blue-400 -translate-y-4 ml-35">
               Já tem uma conta?
             </p>
           </Link>
-          <p>Ou</p>
-          <div className="flex gap-5">
-            <img
-              className="border-purple border-2 rounded-3xl p-0.5"
-              src={googleIcon}
-              alt=""
-            />
-            <img
-              className="border-purple border-2 rounded-3xl p-0.5"
-              src={facebookIcon}
-              alt=""
-            />
-          </div>
         </header>
       </div>
     </div>
