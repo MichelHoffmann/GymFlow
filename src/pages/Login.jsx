@@ -5,7 +5,7 @@ import { LockSimple, SignIn, User, WarningCircle } from "@phosphor-icons/react";
 import { set, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { loginUser } from "../services/authServices";
 import { ErrorMessage } from "@hookform/error-message";
@@ -23,10 +23,14 @@ export default function Login() {
   const { register, handleSubmit, formState: {errors} } = useForm({
     resolver: zodResolver(userSchema),
   });
+  const navigate = useNavigate()
 
   function handleLoginResponse(response) {
     setIsLoading(false);
-    if (!response.success) {
+    if (response.success) {
+      console.log(response)
+      navigate("/home");
+    } else {
       setError(response.message.message.replace("🔥", ""));
     }
   }
