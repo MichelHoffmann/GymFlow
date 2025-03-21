@@ -2,7 +2,7 @@ import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
 import loadingIcon from "../assets/loadingIcon.svg";
 import { LockSimple, SignIn, User, WarningCircle } from "@phosphor-icons/react";
-import { set, z } from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
