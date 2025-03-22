@@ -1,7 +1,14 @@
 import gymIcon from "../assets/Barbell.svg";
 import googleIcon from "../assets/Google.png";
 import loadingIcon from "../assets/loadingIcon.svg";
-import { LockSimple, SignIn, User, WarningCircle } from "@phosphor-icons/react";
+import {
+  LockSimple,
+  SignIn,
+  User,
+  WarningCircle,
+  Eye,
+  EyeSlash,
+} from "@phosphor-icons/react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,10 +27,15 @@ const userSchema = z.object({
 export default function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { register, handleSubmit, formState: {errors} } = useForm({
+  const [showPassword, setShowPassword] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(userSchema),
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleLoginResponse(response) {
     setIsLoading(false);
@@ -34,12 +46,16 @@ export default function Login() {
     }
   }
 
-  async function handleLoginUser (data) {
+  async function handleLoginUser(data) {
     setError("");
     setIsLoading(true);
     const response = await loginUser(data);
     handleLoginResponse(response);
-  };
+  }
+
+  function handleShowPassword() {
+    setShowPassword(!showPassword);
+  }
 
   return (
     <div className="bg-black w-full h-screen">
@@ -78,11 +94,13 @@ export default function Login() {
                 />
               </div>
             </div>
-            <ErrorMessage errors={errors}
+            <ErrorMessage
+              errors={errors}
               name="email"
               as={
                 <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
-              } />
+              }
+            />
             <div>
               <label htmlFor="Email" className="font-light">
                 Senha
@@ -95,25 +113,49 @@ export default function Login() {
                 />
                 <input
                   className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Senha"
                   id="Senha"
                   {...register("password")}
                 />
+                <button
+                  type="button"
+                  className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
+                >
+                  {showPassword ? (
+                    <Eye
+                      size={22}
+                      color={"#7c7c8a"}
+                      onClick={handleShowPassword}
+                    />
+                  ) : (
+                    <EyeSlash
+                      size={22}
+                      color={"#7c7c8a"}
+                      onClick={handleShowPassword}
+                    />
+                  )}
+                </button>
               </div>
             </div>
-            <ErrorMessage errors={errors}
+            <ErrorMessage
+              errors={errors}
               name="password"
               as={
                 <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
-              } />
+              }
+            />
             <div>
               <button
                 className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
                 type="submit"
               >
-                {isLoading ? ( <img src={loadingIcon} className="w-9" />) : (<SignIn size={25} color={"#fff"} />)}
-                {isLoading ? (<span>Carregando</span>) : (<span>Entrar</span>)}
+                {isLoading ? (
+                  <img src={loadingIcon} className="w-9" />
+                ) : (
+                  <SignIn size={25} color={"#fff"} />
+                )}
+                {isLoading ? <span>Carregando</span> : <span>Entrar</span>}
               </button>
               <button className="w-[302px] h-[48px] bg-gray-05 border-1 outline-none rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3">
                 <img className="w-7" src={googleIcon} alt="" />
