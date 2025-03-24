@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { loginUser } from "../services/authServices";
 import { ErrorMessage } from "@hookform/error-message";
+import { motion } from "motion/react"
 
 const userSchema = z.object({
   email: z.string().email({ message: "Digite um email válido" }),
@@ -60,7 +61,7 @@ export default function Login() {
   return (
     <div className="bg-black w-full h-screen">
       <div className="bg-custom-image w-full h-screen">
-        <header className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
           <div className="flex items-center gap-2 mb-5 mr-9">
             <img src={gymIcon} alt="Icone de um halter" />
             <h1 className="font-bold text-3xl">GymFlow</h1>
@@ -170,7 +171,7 @@ export default function Login() {
               <span className="text-blue-500"> Registre-se</span>
             </Link>
           </p>
-        </header>
+        </motion.div>
       </div>
     </div>
   );
