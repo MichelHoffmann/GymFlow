@@ -29,3 +29,7 @@
     -webkit-text-fill-color: #7c7c8a !important;
   }
 }
+
+body{
+  background-color: black;
+}

@@ -74,9 +74,9 @@ export default function Cadastro() {
   }
 
   return (
-    <div className="bg-black w-full h-screen">
+    <motion.div initial={{width: 0}} animate={{width: '100%'}} exit={{opacity: 0}} className="bg-black w-full h-screen">
       <div className="bg-custom-image w-full h-screen">
-        <motion.header initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
+        <header className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
           <div className="flex items-center gap-2 mr-9">
             <img src={gymIcon} alt="Icone de um halter" />
             <h1 className="font-bold text-3xl">GymFlow</h1>
@@ -248,18 +248,8 @@ export default function Cadastro() {
               Já tem uma conta?
             </p>
           </Link>
-        </motion.header>
+        </header>
       </div>
-    </div>
+    </motion.div>
   );
-
-  /*
-  if (type === 'recuperar') {
-    return()
-  }
-
-  if (type === 'recuperar2') {
-    return()
-  }
-*/
 }
