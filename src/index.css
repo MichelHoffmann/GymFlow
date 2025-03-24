@@ -5,6 +5,7 @@
     background-image: url("../src/assets/bgImg.png");
     background-size: cover;
     background-position: center center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -15,6 +16,8 @@
   --color-gray-03: #3f3f3f;
   --color-gray-04: #7c7c8a;
   --color-purple: #896cfe;
+  --color-purple-two: #7B61FF;
+  --color-purple-three: #7B61FF;
   --color-red-one: #d65247;
   --color-red-two: #ff5c5c;
 }
@@ -31,5 +34,5 @@
 }
 
 body{
-  background-color: black;
+  background-color: #232323;
 }

@@ -4,6 +4,7 @@ import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
 import Home from "./pages/Home.jsx";
 import { AnimatePresence } from "motion/react";
+import Start from "./pages/Start.jsx";
 
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
         <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
                 <Route index element={<Home />} />
+                <Route path="/start" element={<Start />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
