@@ -20,7 +20,13 @@ export default function Home() {
     if (!token) {
       navigate("/login");
     }
+    
     const response = await verifyToken(token);
+    if (!response) {
+      localStorage.removeItem('token')
+      navigate("/login");
+    }
+
     handleUserPage(response);
   }, [navigate]);
 
