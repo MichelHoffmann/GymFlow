@@ -40,7 +40,7 @@ export default function Login() {
   function handleLoginResponse(response) {
     setIsLoading(false);
     if (response.success) {
-      navigate("/meta");
+      navigate("/home");
     } else {
       setError(response.message.message.replace("🔥", ""));
     }
