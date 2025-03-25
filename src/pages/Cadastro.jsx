@@ -80,7 +80,7 @@ export default function Cadastro() {
       className="bg-custom-image bg-cover w-full h-screen"
     >
       <div className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
-        <h1 className="font-bold text-3xl text-purple-three">RunFlow</h1>
+        <h1 className="font-bold text-3xl text-purple-two">RunFlow</h1>
         <h2 className="font-light text-xl">Crie a sua conta</h2>
         {error && (
           <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">

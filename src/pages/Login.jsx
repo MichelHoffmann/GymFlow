@@ -40,7 +40,7 @@ export default function Login() {
   function handleLoginResponse(response) {
     setIsLoading(false);
     if (response.success) {
-      navigate("/home");
+      navigate("/meta");
     } else {
       setError(response.message.message.replace("🔥", ""));
     }
@@ -65,7 +65,7 @@ export default function Login() {
       className="bg-custom-image bg-cover w-full h-screen"
     >
       <div className="w-full h-screen flex flex-col gap-5 items-center justify-center text-white">
-        <h1 className="font-bold text-3xl text-purple-three">RunFlow</h1>
+        <h1 className="font-bold text-3xl text-purple-two">RunFlow</h1>
         <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
         {error && (
           <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">

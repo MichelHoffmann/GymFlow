@@ -8,6 +8,7 @@ export default function Start() {
     function handleNavigate() {
         navigate("/cadastro");
     }
+
     return (
         <motion.div initial={{y: 1000, opacity: 0}} animate={{y: 0, opacity: 1}} exit={{y:1000}} className="w-full h-screen bg-bottom bg-no-repeat flex items-end" style={{ backgroundImage: `url(${bgImage})` }}>
             <div className='w-full flex flex-col items-center justify-center gap-5 mb-[70px]'>
