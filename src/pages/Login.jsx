@@ -15,7 +15,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { loginUser } from "../services/authServices";
 import { ErrorMessage } from "@hookform/error-message";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 
 const userSchema = z.object({
   email: z.string().email({ message: "Digite um email válido" }),
@@ -58,118 +58,117 @@ export default function Login() {
   }
 
   return (
-    <motion.div initial={{y: 1000}} animate={{y: 0}} exit={{y: 1000}} className="bg-black w-full h-screen">
-      <div className="bg-custom-image w-full h-screen">
-        <div className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
-          <div className="flex items-center gap-2 mb-5 mr-9">
-            <h1 className="font-bold text-3xl">GymFlow</h1>
+    <motion.div
+      initial={{ y: 1000 }}
+      animate={{ y: 0 }}
+      exit={{ y: 1000 }}
+      className="bg-custom-image bg-cover w-full h-screen"
+    >
+      <div className="w-full h-screen flex flex-col gap-5 items-center justify-center text-white">
+        <h1 className="font-bold text-3xl text-purple-three">RunFlow</h1>
+        <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
+        {error && (
+          <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
+            <WarningCircle size={25} />
+            <p className="text-white font-medium">{error}</p>
           </div>
-          <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
-          {error && (
-            <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
-              <WarningCircle size={25} />
-              <p className="text-white font-medium">{error}</p>
+        )}
+        <form
+          className="w-full flex flex-col items-center justify-center gap-3"
+          onSubmit={handleSubmit(handleLoginUser)}
+        >
+          <div>
+            <div className="relative">
+              <User
+                className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                size={35}
+                color={"#7c7c8a"}
+              />
+              <input
+                className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                placeholder="seu@email.com"
+                id="Email"
+                {...register("email")}
+              />
             </div>
-          )}
-          <form
-            className="w-full flex flex-col items-center justify-center gap-3"
-            onSubmit={handleSubmit(handleLoginUser)}
-          >
-            <div>
-              <label htmlFor="Email" className="font-light">
-                Email
-              </label>
-              <div className="relative">
-                <User
-                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
-                  size={35}
-                  color={"#7c7c8a"}
-                />
-                <input
-                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
-                  placeholder="seu@email.com"
-                  id="Email"
-                  {...register("email")}
-                />
-              </div>
-            </div>
-            <ErrorMessage
-              errors={errors}
-              name="email"
-              as={
-                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
-              }
-            />
-            <div>
-              <label htmlFor="Email" className="font-light">
-                Senha
-              </label>
-              <div className="relative">
-                <LockSimple
-                  className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
-                  size={35}
-                  color={"#7c7c8a"}
-                />
-                <input
-                  className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Senha"
-                  id="Senha"
-                  {...register("password")}
-                />
-                <button
-                  type="button"
-                  className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
-                >
-                  {showPassword ? (
-                    <Eye
-                      size={22}
-                      color={"#7c7c8a"}
-                      onClick={handleShowPassword}
-                    />
-                  ) : (
-                    <EyeSlash
-                      size={22}
-                      color={"#7c7c8a"}
-                      onClick={handleShowPassword}
-                    />
-                  )}
-                </button>
-              </div>
-            </div>
-            <ErrorMessage
-              errors={errors}
-              name="password"
-              as={
-                <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
-              }
-            />
-            <div>
+          </div>
+          <ErrorMessage
+            errors={errors}
+            name="email"
+            as={
+              <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
+            }
+          />
+          <div className="relative">
+            <div className="relative">
+              <LockSimple
+                className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
+                size={35}
+                color={"#7c7c8a"}
+              />
+              <input
+                className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                type={showPassword ? "text" : "password"}
+                placeholder="Senha"
+                id="Senha"
+                {...register("password")}
+              />
               <button
-                className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
-                type="submit"
+                type="button"
+                className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
-                {isLoading ? (
-                  <img src={loadingIcon} className="w-9" />
+                {showPassword ? (
+                  <Eye
+                    size={22}
+                    color={"#7c7c8a"}
+                    onClick={handleShowPassword}
+                  />
                 ) : (
-                  <SignIn size={25} color={"#fff"} />
+                  <EyeSlash
+                    size={22}
+                    color={"#7c7c8a"}
+                    onClick={handleShowPassword}
+                  />
                 )}
-                {isLoading ? <span>Carregando</span> : <span>Entrar</span>}
-              </button>
-              <button className="w-[302px] h-[48px] bg-gray-05 border-1 outline-none rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3">
-                <img className="w-7" src={googleIcon} alt="" />
-                Google
               </button>
             </div>
-          </form>
-          <p className="text-blue-500">Esqueceu a sua senha?</p>
-          <p>
-            Não tem uma conta?
-            <Link to={"/cadastro"}>
-              <span className="text-blue-500"> Registre-se</span>
-            </Link>
-          </p>
-        </div>
+            <p className="absolute text-sm text-blue-500 z-10 top-12 right-0">
+              Esqueceu a sua senha?
+            </p>
+          </div>
+          <ErrorMessage
+            errors={errors}
+            name="password"
+            as={
+              <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
+            }
+          />
+          <button
+            className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
+            type="submit"
+          >
+            {isLoading ? (
+              <img src={loadingIcon} className="w-9" />
+            ) : (
+              <SignIn size={25} color={"#fff"} />
+            )}
+            {isLoading ? <span>Carregando</span> : <span>Entrar</span>}
+          </button>
+          <div className="flex items-center w-[302px]">
+            <div className="border-t flex-grow"></div>
+            <p className="mx-4 text-center">Ou continue com</p>
+            <div className="border-t flex-grow"></div>
+          </div>
+          <button className="w-[302px] h-[48px] bg-gray-03 rounded-xl border-3 border-gray-04 flex justify-center items-center">
+            <img src={googleIcon} alt="" />
+          </button>
+        </form>
+        <p>
+          Não tem uma conta?
+          <Link to={"/cadastro"}>
+            <span className="text-blue-500"> Registre-se</span>
+          </Link>
+        </p>
       </div>
     </motion.div>
   );

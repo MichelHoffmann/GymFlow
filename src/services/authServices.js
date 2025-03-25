@@ -30,6 +30,6 @@ export const verifyToken = async (token) => {
     })
     return response.data
   } catch (error) {
-    
+    console.log(error)
   }
 }

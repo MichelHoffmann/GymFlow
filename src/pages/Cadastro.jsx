@@ -73,7 +73,12 @@ export default function Cadastro() {
   }
 
   return (
-    <motion.div initial={{ y: 1000 }} animate={{ y: 0 }} exit={{ y: 1000 }} className="bg-custom-image bg-cover w-full h-screen">
+    <motion.div
+      initial={{ y: 1000 }}
+      animate={{ y: 0 }}
+      exit={{ y: 1000 }}
+      className="bg-custom-image bg-cover w-full h-screen"
+    >
       <div className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
         <h1 className="font-bold text-3xl text-purple-three">RunFlow</h1>
         <h2 className="font-light text-xl">Crie a sua conta</h2>
@@ -194,9 +199,17 @@ export default function Cadastro() {
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
                 {showPassword2 ? (
-                  <Eye color={"#7c7c8a"} size={22} onClick={handleShowPassword2} />
+                  <Eye
+                    color={"#7c7c8a"}
+                    size={22}
+                    onClick={handleShowPassword2}
+                  />
                 ) : (
-                  <EyeSlash color={"#7c7c8a"} size={22} onClick={handleShowPassword2} />
+                  <EyeSlash
+                    color={"#7c7c8a"}
+                    size={22}
+                    onClick={handleShowPassword2}
+                  />
                 )}
               </button>
             </div>
@@ -228,8 +241,11 @@ export default function Cadastro() {
             <img src={googleIcon} alt="" />
           </button>
         </form>
-        <p className="text-blue-400">
-          Já tem uma conta? <Link to={"/login"}><span>Faça login!</span></Link>
+        <p className="text-white">
+          Já tem uma conta?{" "}
+          <Link to={"/login"}>
+            <span className="text-blue-400">Faça login!</span>
+          </Link>
         </p>
       </div>
     </motion.div>
