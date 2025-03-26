@@ -8,7 +8,7 @@ export default function Meta() {
   
   async function handleAddMeta() {
     const email = localStorage.getItem("email");
-    const response = addMeta({ email, meta });
+    const response = await addMeta({ email, meta });
     return response;
   }
 

@@ -50,10 +50,16 @@ export const addMeta = async (userInfo) => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       }
     );
     console.log(`RESPONSE:: ${response}`);
+    return {
+      success: true,
+      data: response.data,
+      message: "Meta atualizada com sucesso",
+    };
   } catch (error) {
     console.log(error.response.data);
     return error;
