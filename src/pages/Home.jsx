@@ -8,18 +8,17 @@ import { motion } from "motion/react";
 
 export default function Home() {
   const [user, setUser] = useState({});
-  const [showPage, setShowPage] = useState(false);
+  const [showPageHome, setShowPageHome] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
   const userHasMeta = useCallback(
     (user) => {
       if (!user.meta) {
-        console.log("Não tem meta");
-        setShowPage(false);
-        navigate("/meta");
+        setShowPageHome(false);
+        navigate("/meta", { state: { email: user.user.email } });
       }
-      setShowPage(true);
+      setShowPageHome(true);
     },
     [navigate]
   );
@@ -57,17 +56,15 @@ export default function Home() {
 
   function handleLogout() {
     localStorage.removeItem("token");
-    setShowPage(false);
+    setShowPageHome(false);
     navigate("/login");
   }
 
-  
-
   useEffect(() => {
     verifyTokenStorage();
-  }, [showPage, verifyTokenStorage]);
+  }, [verifyTokenStorage]);
 
-    if (!showPage) {
+    if (!showPageHome) {
       return (
         <div className="w-full h-screen flex justify-center items-center bg-gray-01">
           <p className="font-bold text-2xl text-purple">Carregando...</p>
@@ -90,7 +87,7 @@ export default function Home() {
                   className="border-2 rounded-4xl border-gray-03"
                 />
                 <p className="font-bold text-xl text-purple">
-                  Olá, {user.name.split(" ")[0]}
+                  Olá, {user.name}
                 </p>
               </div>
               <div className="flex items-center justify-center gap-3">

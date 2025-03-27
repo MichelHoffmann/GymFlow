@@ -114,6 +114,7 @@ export default function Login() {
                 {...register("password")}
               />
               <button
+              tabIndex={-1}
                 type="button"
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >

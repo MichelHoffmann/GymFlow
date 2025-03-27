@@ -1,14 +1,20 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import bgImage from "../assets/bgMeta.png";
+import loadingIcon from "../assets/loadingIcon.svg";
 import { addMeta } from "../services/authServices";
+import { useLocation } from "react-router";
 
 export default function Meta() {
   const [meta, setMeta] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
+  const location = useLocation()
   
   async function handleAddMeta() {
-    const email = localStorage.getItem("email");
+    setIsLoading(true);
+    const email = location.state.email
     const response = await addMeta({ email, meta });
+    setIsLoading(false);
     return response;
   }
 
@@ -16,6 +22,7 @@ export default function Meta() {
     const inputValue = Number(e.target.value);
     setMeta(inputValue);
   }
+
   return (
     <motion.div
       initial={{ y: 1000, opacity: 0 }}
@@ -29,7 +36,7 @@ export default function Meta() {
           Defina uma meta <br /> semanal de Km:
         </h1>
         <div className="relative">
-          <input
+          <input autoFocus
             className="flex-grow h-10 bg-gray-02 rounded-2xl border-1 border-purple-two font-extrabold text-white text-center focus:outline-none"
             type="number"
             name="meta"
@@ -37,15 +44,25 @@ export default function Meta() {
             value={meta}
             onChange={handleChange}
           />
-          <button className="absolute right-6 top-2 font-extrabold text-purple">
+          <button
+            disabled
+            className="absolute right-6 top-2 font-extrabold text-purple"
+          >
             KM
           </button>
         </div>
         <button
-          className="rounded-2xl font-extrabold text-purple bg-gray-02 w-40 py-[4px] border-1 border-purple hover:cursor-pointer"
+          className="rounded-2xl font-extrabold text-purple bg-gray-02 w-47 h-10 py-[4px] border-1 border-purple hover:cursor-pointer"
           onClick={handleAddMeta}
         >
-          Confirmar
+          {isLoading ? (
+            <span className="flex justify-center items-center gap-2">
+              <img src={loadingIcon} className="w-7" />
+              Carregando
+            </span>
+          ) : (
+            <span>Confirmar</span>
+          )}
         </button>
       </div>
     </motion.div>

@@ -154,6 +154,7 @@ export default function Cadastro() {
                 {...register("password")}
               />
               <button
+              tabIndex={-1}
                 type="button"
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
@@ -195,6 +196,7 @@ export default function Cadastro() {
                 {...register("confirmPassword")}
               />
               <button
+              tabIndex={-1}
                 type="button"
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
