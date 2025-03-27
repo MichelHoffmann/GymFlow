@@ -38,15 +38,13 @@ export const verifyToken = async (token) => {
 export const addMeta = async (userInfo) => {
   const { email, meta } = userInfo;
   const token = localStorage.getItem("token");
-
+  
   if (!token) {
     return { success: false, message: "Token não encontrado" };
   }
 
   try {
-    const response = await api.patch(
-      "user/me",
-      { email, meta },
+    const response = await api.patch("/user/me", { email, meta },
       {
         headers: {
           Authorization: `Bearer ${token}`,
