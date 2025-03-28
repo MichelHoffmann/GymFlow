@@ -15,10 +15,10 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
           <Route index element={<Home />} />
-          <Route path="/start" element={<Start />} />
-          <Route path="/meta" element={<Meta />} />
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/start" element={<Start />} />
+          <Route path="/meta" element={<Meta />} />
       </Routes>
     </AnimatePresence>
   );
