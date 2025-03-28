@@ -29,8 +29,8 @@ export const verifyToken = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('response', response);
-    return response.data;
+
+    return response.data.user;
   } catch (error) {
     console.log(error);
   }
@@ -53,14 +53,15 @@ export const addMeta = async (userInfo) => {
         },
       }
     );
-    console.log(`RESPONSE:: ${response}`);
     return {
       success: true,
       data: response.data,
       message: "Meta atualizada com sucesso",
     };
   } catch (error) {
-    console.log(error.response.data);
-    return error;
+    return {
+      success: false,
+      message: error.response.data.message,
+    };
   }
 };

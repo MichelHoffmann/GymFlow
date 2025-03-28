@@ -12,15 +12,16 @@ export default function Home() {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
 
-  const userHasMeta = useCallback((user) => {
-    // if (!user.meta) {
-    //   setShowPageHome(false);
-    //   console.log(user);
-    //   navigate("/meta", { state: { email: user.user.email } });
-    // }
-    console.log("user", user);
-    setShowPageHome(true);
-  }, []);
+  const userHasMeta = useCallback(
+    (user) => {
+      if (user.meta === null) {
+        setShowPageHome(false);
+        navigate("/meta", { state: { email: user.email } });
+      }
+      setShowPageHome(true);
+    },
+    [navigate]
+  );
 
   const handleUserPage = useCallback(
     (response) => {
@@ -37,11 +38,11 @@ export default function Home() {
     }
 
     const response = await verifyToken(token);
-    if (!response.user) {
+    if (!response) {
       localStorage.removeItem("token");
       navigate("/login");
     }
-    handleUserPage(response.user);
+    handleUserPage(response);
   }, [navigate, handleUserPage]);
 
   function handleCloseModal() {

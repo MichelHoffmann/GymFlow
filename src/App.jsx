@@ -7,20 +7,19 @@ import { AnimatePresence } from "motion/react";
 import Start from "./pages/Start.jsx";
 import Meta from "./pages/Meta.jsx";
 
-
 export default function App() {
-    const location = useLocation()
-    return (
-        <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
-                <Route index element={<Home />} />
-                <Route path="/start" element={<Start />} />
-                <Route path="/meta" element={<Meta />} />
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-            </Routes>
-        </AnimatePresence>
-    )
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+          <Route index element={<Home />} />
+          <Route path="/start" element={<Start />} />
+          <Route path="/meta" element={<Meta />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+      </Routes>
+    </AnimatePresence>
+  );
 }
