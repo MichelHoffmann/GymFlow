@@ -13,7 +13,7 @@ export default function Home() {
 
   const userHasMeta = useCallback(
     (user) => {
-      if (user.meta === null) {
+      if (user.meta === null || user.meta === undefined || user.meta === 0) {
         setShowPageHome(false);
         navigate("/meta", { state: { email: user.email } });
       }
@@ -41,6 +41,7 @@ export default function Home() {
       localStorage.removeItem("token");
       navigate("/login");
     }
+    console.log('RESPONSE HOME:')
     console.log(response);
     handleUserPage(response);
   }, [navigate, handleUserPage]);
