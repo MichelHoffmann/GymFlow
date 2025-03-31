@@ -16,7 +16,7 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import { useState } from "react";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 
 const userSchema = z
   .object({
@@ -79,7 +79,7 @@ export default function Cadastro() {
       exit={{ y: 1000 }}
       className="bg-custom-image bg-cover w-full h-screen"
     >
-      <div className="w-full h-screen flex gap-5 flex-col items-center justify-center text-white">
+      <div className="w-full h-dvh flex gap-5 flex-col items-center justify-center text-white">
         <h1 className="font-bold text-3xl text-purple-two">RunFlow</h1>
         <h2 className="font-light text-xl">Crie a sua conta</h2>
         {error && (
@@ -154,7 +154,7 @@ export default function Cadastro() {
                 {...register("password")}
               />
               <button
-              tabIndex={-1}
+                tabIndex={-1}
                 type="button"
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
@@ -196,7 +196,7 @@ export default function Cadastro() {
                 {...register("confirmPassword")}
               />
               <button
-              tabIndex={-1}
+                tabIndex={-1}
                 type="button"
                 className="absolute inset-y-2 right-0 pr-3.5 flex items-center"
               >
