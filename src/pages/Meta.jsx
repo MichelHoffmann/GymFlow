@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { useState } from "react";
 import bgImage from "../assets/bgMeta.png";
 import loadingIcon from "../assets/loadingIcon.svg";
@@ -34,11 +33,8 @@ export default function Meta() {
   }
 
   return (
-    <motion.div
-      initial={{ y: 1000, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 1000 }}
-      className="w-full h-screen bg-bottom bg-no-repeat flex flex-col gap-5 justify-center items-center"
+    <div
+      className="w-full h-dvh bg-bottom bg-no-repeat flex flex-col gap-5 justify-center items-center"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       {error && (
@@ -82,6 +78,6 @@ export default function Meta() {
           )}
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }

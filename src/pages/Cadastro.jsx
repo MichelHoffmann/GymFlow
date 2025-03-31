@@ -16,7 +16,6 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import { useState } from "react";
-import { motion } from "motion/react";
 
 const userSchema = z
   .object({
@@ -73,12 +72,7 @@ export default function Cadastro() {
   }
 
   return (
-    <motion.div
-      initial={{ y: 1000 }}
-      animate={{ y: 0 }}
-      exit={{ y: 1000 }}
-      className="bg-custom-image bg-cover w-full h-screen"
-    >
+    <div className="bg-custom-image bg-cover w-full h-dvh fixed top-0">
       <div className="w-full h-dvh flex gap-5 flex-col items-center justify-center text-white">
         <h1 className="font-bold text-3xl text-purple-two">RunFlow</h1>
         <h2 className="font-light text-xl">Crie a sua conta</h2>
@@ -250,6 +244,6 @@ export default function Cadastro() {
           </Link>
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }

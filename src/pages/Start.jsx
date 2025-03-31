@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import bgImage from "../assets/bgStart.png";
-import { motion } from "motion/react";
 import { useCallback, useEffect } from "react";
 
 export default function Start() {
@@ -25,11 +24,8 @@ export default function Start() {
   }, [verifyPageStart]);
 
   return (
-    <motion.div
-      initial={{ y: 1000, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 1000 }}
-      className="w-full h-dvh bg-bottom bg-no-repeat flex items-end"
+    <div
+      className="w-full h-dvh bg-bottom bg-no-repeat flex items-end fixed top-0"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className="w-full flex flex-col items-center justify-center gap-5 mb-[70px]">
@@ -44,6 +40,6 @@ export default function Start() {
           Começar
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }
