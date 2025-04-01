@@ -38,19 +38,19 @@ export default function Meta() {
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       {error && (
-        <div className="w-[290px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
+        <div className="w-[290px] bg-red-light opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
           <WarningCircle size={37} color="white" />
           <p className="text-white font-medium">{error.replace("🔥", "")}</p>
         </div>
       )}
-      <div className="w-[290px] border-2 border-purple-three bg-purple-three/20 rounded-2xl px-[25px] py-[20px] flex flex-col justify-center items-center gap-5">
+      <div className="w-[290px] border-2 border-purple-medium bg-purple-medium/20 rounded-2xl px-[25px] py-[20px] flex flex-col justify-center items-center gap-5">
         <h1 className="text-xl font-extrabold text-white">
           Defina uma meta <br /> semanal de Km:
         </h1>
         <div className="relative">
           <input
             autoFocus
-            className="flex-grow h-10 bg-gray-02 rounded-2xl border-1 border-purple-two font-extrabold text-white text-center focus:outline-none"
+            className="flex-grow h-10 bg-gray-semi-dark rounded-2xl border-1 border-purple-medium font-extrabold text-white text-center focus:outline-none"
             type="number"
             name="meta"
             id=""
@@ -59,13 +59,13 @@ export default function Meta() {
           />
           <button
             disabled
-            className="absolute right-6 top-2 font-extrabold text-purple"
+            className="absolute right-6 top-2 font-extrabold text-purple-medium"
           >
             KM
           </button>
         </div>
         <button
-          className="rounded-2xl font-extrabold text-purple bg-gray-02 w-47 h-10 py-[4px] border-1 border-purple hover:cursor-pointer"
+          className="rounded-2xl font-extrabold text-purple-medium bg-gray-semi-dark w-47 h-10 py-[4px] border-1 border-purple-medium hover:cursor-pointer"
           onClick={handleAddMeta}
         >
           {isLoading ? (

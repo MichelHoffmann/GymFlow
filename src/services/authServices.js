@@ -30,8 +30,6 @@ export const verifyToken = async (token) => {
       },
     });
 
-    console.log('response')
-    console.log(response.data);
     return response.data.user;
   } catch (error) {
     console.log(error);

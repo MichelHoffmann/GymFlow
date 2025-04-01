@@ -57,12 +57,12 @@ export default function Login() {
   }
 
   return (
-    <div className="bg-custom-image bg-cover w-full h-dvh fixed top-0">
+    <div className="bg-custom-image bg-cover w-full h-dvh">
       <div className="w-full h-dvh flex flex-col gap-5 items-center justify-center text-white">
-        <h1 className="font-bold text-3xl text-purple-two">RunFlow</h1>
-        <h2 className="font-light text-xl opacity-60">Acesse a sua conta</h2>
+        <h1 className="font-bold text-3xl text-purple-medium">RunFlow</h1>
+        <h2 className="font-light text-xl">Acesse a sua conta</h2>
         {error && (
-          <div className="w-[302px] bg-red-two opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
+          <div className="w-[302px] bg-red-light opacity-70 rounded-sm flex items-center justify-self-start gap-3 px-5 py-2">
             <WarningCircle size={25} />
             <p className="text-white font-medium">{error}</p>
           </div>
@@ -76,10 +76,10 @@ export default function Login() {
               <User
                 className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
                 size={35}
-                color={"#7c7c8a"}
+                color={"#676767"}
               />
               <input
-                className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                className="w-[302px] h-[48px] bg-gray-semi-dark text-gray-light pl-11 rounded-sm outline-none focus:border-purple-medium focus:border-2"
                 placeholder="seu@email.com"
                 id="Email"
                 {...register("email")}
@@ -90,7 +90,7 @@ export default function Login() {
             errors={errors}
             name="email"
             as={
-              <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
+              <p className="text-red-medium text-xs w-[302px] text-center font-medium" />
             }
           />
           <div className="relative">
@@ -98,10 +98,10 @@ export default function Login() {
               <LockSimple
                 className="absolute inset-y-2 left-0 pl-3.5 flex items-center pointer-events-none"
                 size={35}
-                color={"#7c7c8a"}
+                color={"#676767"}
               />
               <input
-                className="w-[302px] h-[48px] bg-gray-02 text-gray-04 pl-11 rounded-sm outline-none focus:border-purple focus:border-2"
+                className="w-[302px] h-[48px] bg-gray-semi-dark text-gray-light pl-11 rounded-sm outline-none focus:border-purple-medium focus:border-2"
                 type={showPassword ? "text" : "password"}
                 placeholder="Senha"
                 id="Senha"
@@ -135,11 +135,11 @@ export default function Login() {
             errors={errors}
             name="password"
             as={
-              <p className="text-red-500 text-xs w-[302px] text-center font-medium" />
+              <p className="text-red-medium text-xs w-[302px] text-center font-medium" />
             }
           />
           <button
-            className="w-[302px] h-[48px] bg-purple rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
+            className="w-[302px] h-[48px] bg-purple-medium rounded-sm text-white font-medium flex justify-center items-center gap-2 mt-3"
             type="submit"
           >
             {isLoading ? (
@@ -154,7 +154,7 @@ export default function Login() {
             <p className="mx-4 text-center">Ou continue com</p>
             <div className="border-t flex-grow"></div>
           </div>
-          <button className="w-[302px] h-[48px] bg-gray-03 rounded-xl border-3 border-gray-04 flex justify-center items-center">
+          <button className="w-[302px] h-[48px] bg-gray-semi-dark rounded-xl border-2 border-gray-light flex justify-center items-center">
             <img src={googleIcon} alt="" />
           </button>
         </form>
